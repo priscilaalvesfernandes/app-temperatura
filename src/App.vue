@@ -1,19 +1,28 @@
 <template >
   <q-layout class="flex flex-center" :class="[bgTemperatura]">
         <q-page class="my-card shadow-20 text-black" :style-fn="this.pageHeight" :class="[bgCard]" style="border-radius: 10px;">
-      <div >
+      <div class="menu" >
         <Menu
          v-if="requerido"
           :dados="this.dados"
           :hora="this.hora()"
-          :inconeTemp="this.inconeTemp" 
+          :iconeTemp="this.iconeTemp" 
         />
         <proxDia
           v-if="requerido"
           :tempDados="this.dados"
           :bgTemperatura="this.bgTemperatura"
         />
-
+        <bgTemperatura
+          v-if="requerido"
+          :bgTemperatura="this.bgTemoperatura"
+          :dadosApi="this.dados"
+        />
+        <bgCard
+          v-if="requerido"
+          :bgCard="this.bgCard"
+          :dadosApi="this.dados"
+        />
       </div>
     </q-page>
   </q-layout>
@@ -31,14 +40,15 @@ export default {
     ProxDia,
     Informacoes
   },
+
   props:{
       bgTemperatura: {
       type: String,
-      required: true
+      requiredo: true
     },
     bgCard:{
       type: String,
-      required: true
+      requerido: true
     }
   },
 
@@ -51,6 +61,9 @@ export default {
       horaAtual: '',
       iDia: '',
       iNoite:'',
+      iconeTemp:'',
+      bgTemperatura:'',
+      bgCard:'',
     }
   },
 
@@ -85,6 +98,7 @@ export default {
 <style>
  h1{
     font-size: 2rem;
+    margin: 0 auto
   }
   h2{
     font-size: 1.5rem;
@@ -92,18 +106,17 @@ export default {
   h3{
     font-size: 1rem;
   }
-
-  @media (max-width: 1420px) {
+  @media (min-width: 400px) {
     .my-card {
-      width: 60vw;
+      width: 80vw;
     }
-}
+  } 
 
-@media (max-width: 860px) {
-  .my-card {
-    width: 100vw;
-    height: 100vh;
+  @media (max-width: 400px) {
+    .my-card {
+      width: 90vw;
+      height: 90vh;
+    } 
   }
-}
 
 </style>

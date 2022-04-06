@@ -1,23 +1,25 @@
-<template><!--Apresentandi na tela imformacões de cidade, data, hr e temperatura-->
-    <div class="city">
-      <span class="city row q-mt-lg">
-        <div class="dados col-6 q-pl-xl">
-            <h1> {{ dados.city.name }} - {{ dados.city.country }}</h1>
-            <h1> Data: {{today()}} </h1>
-            <!-- mostrando cidade e país-->
-            <h2> {{hora}} </h2>  <!-- mostrando dia e hr-->
-            <h3> Humidade {{dados.list[0].main.humidity}}%</h3> 
-        </div>
-        <div class="dados1 col-6 q-pl-xl"> 
-           <h1> Temperatura {{Math.round(dados.list[0].main.temp)}}ºC </h1>
-            <Informacoes
-              :dadosApi="this.dados"
-              :horaDiaria ="this.hora"
-            />
-           <h2> {{upercaseString(dados.list[0].weather[0].description)}} </h2>
-        </div>
-      </span>
+<template><!--Apresentando na tela imformacões de cidade, data, hr e temperatura-->
+
+  <div class="city row q-mt-lg">
+    <div class="dados col-6 q-pl-xl">
+        <h1> {{ dados.city.name }} - {{ dados.city.country }}</h1>
+        <h1> Data: {{today()}} </h1>
+        <!-- mostrando cidade e país-->
+        <h2> {{hora}} </h2>  <!-- mostrando dia e hr-->
+        <h3> Humidade {{dados.list[0].main.humidity}}%</h3> 
     </div>
+    <div class="dados1 col-6 q-pl-xl"> 
+        <h1> Temperatura {{Math.round(dados.list[0].main.temp)}}ºC</h1>
+        <!-- <p :class="[iconeTemp]"/> -->
+        <h2 class="clima"> {{upercaseString(dados.list[0].weather[0].description)}} </h2>
+          <Informacoes
+            :dadosApi="this.dados"
+            :horaDiaria ="this.hora"
+          />
+    </div>
+  </div>
+
+    
 </template>
 
 <script>
@@ -49,6 +51,12 @@ export default {
       required: true
     }
   },
+
+  data(){
+    return{
+      icn:''
+    }    
+  },
   methods:{
     upercaseString(string){
       return string[0].toUpperCase() + string.slice(1);
@@ -56,6 +64,12 @@ export default {
     today(){
       const hoje = this.dados.list[0].dt_txt.slice(5,10)
       return hoje
+    },
+
+    icone(){
+      const icn=iconeTemp
+      return icn
+      console.log(icn)
     }
   }
   
@@ -64,23 +78,34 @@ export default {
 
 <style scope>
 
-div.city{
-  width: 95%;
-  border-radius: 10px;
-  margin: 0 auto;
-}
-div.dados{
-  width: 95%;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px; 
-  text-align: center; 
-}
-div.dados1{
-  /* background-color: rgb(219, 187, 126); */
-  width: 95%;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px; 
-  text-align: center; 
-}
+  div.city{
+    width: 95%;
+    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  div.dados{
+    background-color: rgb(219, 187, 126); 
+    width: 95%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; 
+    text-align: center; 
+    padding: 0px;
+    margin-top: 20px;
+  }
+  div.dados1{
+    background-color: rgb(219, 187, 126); 
+    width: 95%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
+    text-align: center; 
+    padding: 0px;
+    margin-top: 20px;
+  }
+   h2.clima{
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+ 
 
 </style>

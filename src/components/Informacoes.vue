@@ -1,7 +1,5 @@
 <template>
-    <div class="icone">
-        <p :class="[iconeTemp]" />
-    </div>
+    <div class="icone" :class="[iconeTemp]"></div>
 </template>
 
 <script>
@@ -114,17 +112,16 @@ methods:{
   beforeMount(){
     this.getClasses()
   }
-
+  
 }
 </script>
 
 <style>
 .icone{
-    padding: 1rem;
-    border-radius: 50%;
-    font-size: 11rem;
-    margin-top: -100px;
+    font-size: 7rem;
     text-align: center;
-
+    height: 0;
+    margin: 0 auto;
+    border-top: -200px;
 }
 </style>

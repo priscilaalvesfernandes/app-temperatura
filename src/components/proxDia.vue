@@ -1,7 +1,7 @@
 <template> <!-- Criando linha com a temoeratura dos proximos dias -->
   <div class="prox-hr">
     <br>
-    <q-scroll-area class="temperatura rounded-borders q-mb-xl" :class="[bgTemperatura]" style="border-radius: 10px;">
+    <q-scroll-area class="temperatura rounded-borders q-mb-xl"  style="border-radius: 10px;">
       <div class=" row no-wrap">
           <div v-for="n in 13" :key="n" class="flex flex-center temperatura-item q-pa-lg" style="height: 10px">
             <h6 class="text-black"> {{ horaDia(n - 1) }} </h6>
@@ -99,10 +99,12 @@ import { date, format } from "quasar"
   }
 
   div.prox-hr{
-    /* background-color: wheat; */
+    background-color: wheat; 
     width: 95%;
     margin: 0 auto;
     border-radius: 10px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   h6{
     margin: 0px;
