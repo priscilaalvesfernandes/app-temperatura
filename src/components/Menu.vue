@@ -62,8 +62,14 @@ export default {
       return string[0].toUpperCase() + string.slice(1);
     },
     today(){
-      const hoje = this.dados.list[0].dt_txt.slice(5,10)
+      const data = new Date()
+      const dia = String(data.getDate()).padStart(2,'0')
+      const mes = String(data.getMonth()+1).padStart(2,'0')
+      const ano = data.getFullYear()
+      //const hoje = this.dados.list[0].dt_txt.slice(5,10)
+      const hoje = dia+'/' + mes + '/' + ano
       return hoje
+      console.log(hoje)
     },
 
     icone(){
